@@ -13,7 +13,8 @@ for(let heart of hearts){
 
 let callBtn = document.getElementsByClassName("callBtn");
 let coins = document.getElementById("coin");
-let log = document.getElementById("callLog")
+let log = document.getElementById("callLog");
+
 
 for(let clk of callBtn ){
     clk.addEventListener("click", function(e){
@@ -26,7 +27,10 @@ for(let clk of callBtn ){
        
 
         let coin = parseInt(coins.innerText);
-        coin = coin-20
+        if(coin>=20){
+            coin = coin-20;
+        }
+        
         coins.innerText = coin;
         if(coin<1){
             window.alert("You Don't have enough coins to make a call");
@@ -34,6 +38,28 @@ for(let clk of callBtn ){
         }
          window.alert("Calling"+ " " +serviceName+ " " +serviceNumber);
 
-        log.innerHTML = 
+        let now = new Date().toLocaleTimeString(); 
+        let callHistory = document.createElement("div");
+        callHistory.className = "flex items-center justify-between p-5 bg-gray-100 mt-5 rounded-md";
+
+        callHistory.innerHTML =
+            '<div>' +
+            '<h2 class="text-lg font-semibold">' + serviceName + '</h2>' +
+            '<p>' + serviceNumber + '</p>' +
+            '</div>' +
+            '<div class="text-right">' +
+            '<p>' + now + '</p>' +
+            '</div>';
+        log.appendChild(callHistory);
+
+
+
     })
+
 }
+
+let clrBtn = document.getElementById("clr")
+clrBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    log.innerHTML=""
+})
