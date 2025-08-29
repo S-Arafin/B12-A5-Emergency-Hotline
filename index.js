@@ -63,3 +63,13 @@ clrBtn.addEventListener("click", function(e){
     e.preventDefault();
     log.innerHTML=""
 })
+let copyCount =parseInt (document.getElementById('copyCount').innerText)
+let copies = document.getElementsByClassName("copyBtn")
+for(copy of copies)
+copy.addEventListener("click", function(e){
+    e.preventDefault();
+    copyCount ++;
+    document.getElementById("copyCount").innerText = copyCount
+    
+
+})
