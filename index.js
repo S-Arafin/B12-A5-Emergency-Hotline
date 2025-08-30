@@ -40,7 +40,7 @@ for(let clk of callBtn ){
 
         let now = new Date().toLocaleTimeString(); 
         let callHistory = document.createElement("div");
-        callHistory.className = "flex items-center justify-between p-5 bg-gray-100 mt-5 rounded-md";
+        callHistory.className = "flex items-center justify-between gap-4 p-3 bg-gray-100 mt-5 rounded-md";
 
         callHistory.innerHTML =
             '<div>' +
@@ -65,11 +65,17 @@ clrBtn.addEventListener("click", function(e){
 })
 let copyCount =parseInt (document.getElementById('copyCount').innerText)
 let copies = document.getElementsByClassName("copyBtn")
-for(copy of copies)
+for(let copy of copies)
 copy.addEventListener("click", function(e){
     e.preventDefault();
     copyCount ++;
     document.getElementById("copyCount").innerText = copyCount
+
+    let c = copy.parentElement.parentElement
+    let Number = c.querySelector("h1").textContent;
     
+    navigator.clipboard.writeText(Number).then(()=>{
+        window.alert(Number +" "+ "copied")
+    })
 
 })
